@@ -1,3 +1,8 @@
+/*
+    Author: Lasse Seivaag
+*/
+
+
 #pragma once
 
 #ifdef _WIN32 /*If compiling for Windows platform */
@@ -114,6 +119,7 @@ public:
     virtual int start() = 0;
     virtual int quit() = 0;
     virtual int closeSocket(SOCKET) = 0;
+    virtual void sendTo(char* data, int data_len, Connection con) = 0;
     Callback onReceive;
     Callback onConnect;
     Callback onDisconnect;
@@ -192,10 +198,10 @@ public:
         return s;
     }
 
-    void sendTo(char data[], int data_len, sockaddr_in con_info)
+    void sendTo(char data[], int data_len, Connection con_info)
     {
-        int con_info_size = sizeof(con_info);
-        int res = sendto(m_socket, data, data_len, 0, (sockaddr *)&con_info, con_info_size);
+        int con_info_size = sizeof(con_info.con_info);
+        int res = sendto(m_socket, data, data_len, 0, (sockaddr *)&con_info.con_info, con_info_size);
         if (res < 0)
         {
             std::cout << errno << std::endl;
@@ -276,18 +282,24 @@ struct TCPServer : public Socket
         inet_pton(domain, ip, &hint.sin_addr);
         if (bind(socket_id, (sockaddr *)&hint, sizeof(hint)) != 0)
         {
-
             return -3;
         }
         if (listen(socket_id, SOMAXCONN) != 0)
         {
             return -4;
         }
-
         listening_thread = std::thread(&TCPServer::listenLoop, this);
         auto receive_thread = std::thread(&TCPServer::receiveLoop, this);
         receive_thread.detach();
         return 0;
+    }
+
+    void sendTo(char* data, int data_len, Connection con){
+        int status = send(con.client_socket, data, data_len, 0);
+        if(status == -1){
+            std::cout << "sendTo failed." << std::endl;
+            exit(100);
+        }
     }
 
     void listenLoop()
@@ -395,149 +407,133 @@ struct TCPServer : public Socket
 
 #pragma region TCPClient
 
-struct TCPClient
+struct TCPClient : public Socket
 {
+    bool quitting = false;
+    Connection connection = Connection(socket_id, hint);
     SOCKET socket_id;
     sockaddr_in hint;
-    bool quitting = false;
-    void (*onReceive)(char data[], SOCKET server);
+    std::thread receive_thread;
 
-    int init(int domain, int type, int protocol, char *ip, short port)
+    TCPClient(){
+        this->connection = Connection(socket_id, hint);
+        this->domain = AF_INET;
+        this->type = SOCK_STREAM;
+        this->protocol = 0;
+        this->port = 0;
+        this->ip = "127.0.0.1";
+    }
+    TCPClient(int domain, const char* ip, short port) {
+        this->connection = Connection(socket_id, hint);
+        this->domain = domain;
+        this->type = SOCK_STREAM;
+        this->protocol = 0;
+        this->port = port;
+        this->ip = ip;
+    }
+
+    int start()
     {
 #ifdef _WIN32
-
         WSADATA wsa_data;
-
         int status = WSAStartup(MAKEWORD(2, 2), &wsa_data);
-
         if (status != 0)
         {
-
             return status;
         }
-
 #endif
-
         socket_id = socket(domain, type, protocol);
-
         if (socket_id == -1 || socket_id == (unsigned long long)(~0))
         {
-
-            return -1;
+            return -2;
         }
-
         hint.sin_family = domain;
-
         hint.sin_port = htons(port);
-
         inet_pton(domain, ip, &hint.sin_addr);
-
         if (bind(socket_id, (sockaddr *)&hint, sizeof(hint)) != 0)
         {
-            return -1;
+            return -3;
         }
         return 0;
     }
 
-    int connectTo(char *ip, short port)
+    void sendTo(char* data, int data_len, Connection con){
+        int status = send(con.client_socket, data, data_len, 0);
+        if(status == -1){
+            std::cout << "sendTo failed." << std::endl;
+            exit(100);
+        }
+    }
+
+    int connectTo(const char *ip, short port)
     {
         sockaddr_in s_hint;
         s_hint.sin_family = hint.sin_family;
         s_hint.sin_port = htons(port);
         inet_pton(hint.sin_family, ip, &s_hint.sin_addr);
         int res = connect(socket_id, (sockaddr *)&s_hint, sizeof(s_hint));
-        auto a = std::thread(&TCPClient::receiveLoop, this);
-        a.detach();
+        if(res == 0){
+            connection = Connection(socket_id, s_hint);
+            receive_thread = std::thread(&TCPClient::receiveLoop, this);
+        }
         return res;
     }
 
     void receiveLoop()
     {
-
         while (!quitting)
         {
 #ifdef _WIN32
             char buf[1024];
             u_long arg = 1;
-
             int received = recv(socket_id, buf, 1024, 0);
-
             if (received > 0)
             {
-
                 buf[received] = '\0';
-
-                onReceive(buf, socket_id);
+                onReceive(buf, received, connection);
             }
-
 #else
-
             char buf[1024];
-
             int received = recv(socket_id, buf, 1024, MSG_DONTWAIT);
-
             if (received > 0)
             {
-
                 buf[received] = '\0';
                 onReceive(buf, socket_id);
             }
-
 #endif
         }
     }
 
     int quit()
     {
-
-        if (!quitting)
-        {
-
-            closeSocket();
-        }
-
+        quitting = true;
+        closeSocket(socket_id);
 #ifdef _WIN32
-
         return WSACleanup();
-
 #else
-
         return 0;
-
 #endif
     }
 
-    int closeSocket()
+    int closeSocket(SOCKET socket_id)
     {
-
-        quitting = true;
-
         int s = 0;
-
 #ifdef _WIN32
-
         s = shutdown(socket_id, SD_BOTH);
-
         if (s == 0)
         {
             s = closesocket(socket_id);
         }
-
 #else
-
         s = shutdown(socket_id, SHUT_RDWR);
-
         if (s == 0)
         {
             s = close(socket_id);
         }
-
 #endif
-
         return s;
     }
 };
-
 #pragma endregion TCPClient
 
 } // namespace herosockets
