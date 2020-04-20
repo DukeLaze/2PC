@@ -1,9 +1,7 @@
 #include "tpc.h"
 
 int main(){
-    //tpc::Participant testp("127.0.0.1", 3000);
-    //char* b = "hei på dere";
-    //testp.onRecieve(b, 12);
+    
     tpc::Client_TCRequestPacket test;
     test.payload = "Hellofeqf3 4there2 2442 1 sfe2f 3 1431";
     test.payload_size = test.payload.size();

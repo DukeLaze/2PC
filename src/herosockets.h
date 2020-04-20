@@ -49,7 +49,7 @@ class Callback{
     public:
     Callback() : obj(0), on_receive_func(0), on_connect_func(0){}
 
-    template <typename T, void (T::*method)(char*, int, Connection)>
+    template <typename T, void (T::*method)(const char*, int, Connection)>
     static Callback create_on_receive(T* obj){
         Callback c;
         c.obj = obj;
@@ -83,8 +83,8 @@ class Callback{
         return (*on_disconnect_func)(obj, con);
     }
 
-    template <typename T, void (T::*method)(char*, int, Connection)>
-    static void bind_on_receive(void* object, char data[], int data_len, Connection con){
+    template <typename T, void (T::*method)(const char*, int, Connection)>
+    static void bind_on_receive(void* object, const char* data, int data_len, Connection con){
         T* o = (T*)(object);
         return (o->*method)(data, data_len, con);
     }
@@ -101,7 +101,7 @@ class Callback{
         return (o->*method)(con);
     }
 
-    typedef void (*onReceive)(void* object, char data[], int data_len, Connection con);
+    typedef void (*onReceive)(void* object, const char* data, int data_len, Connection con);
     typedef void (*onConnect)(void* object, Connection con, std::string ip);
     typedef void (*onDisconnect)(void* object, Connection con);
     onReceive on_receive_func;
@@ -119,7 +119,7 @@ public:
     virtual int start() = 0;
     virtual int quit() = 0;
     virtual int closeSocket(SOCKET) = 0;
-    virtual void sendTo(char* data, int data_len, Connection con) = 0;
+    virtual void sendTo(const char* data, int data_len, Connection con) = 0;
     Callback onReceive;
     Callback onConnect;
     Callback onDisconnect;
@@ -198,7 +198,7 @@ public:
         return s;
     }
 
-    void sendTo(char data[], int data_len, Connection con_info)
+    void sendTo(const char* data, int data_len, Connection con_info)
     {
         int con_info_size = sizeof(con_info.con_info);
         int res = sendto(m_socket, data, data_len, 0, (sockaddr *)&con_info.con_info, con_info_size);
@@ -294,7 +294,7 @@ struct TCPServer : public Socket
         return 0;
     }
 
-    void sendTo(char* data, int data_len, Connection con){
+    void sendTo(const char* data, int data_len, Connection con){
         int status = send(con.client_socket, data, data_len, 0);
         if(status == -1){
             std::cout << "sendTo failed." << std::endl;
@@ -324,12 +324,10 @@ struct TCPServer : public Socket
             int status = getnameinfo((sockaddr *)&client, client_size, host, NI_MAXHOST, service, sizeof(service), 0);
             if (status)
             {
-                std::cout << host << " connected on " << service << std::endl;
             }
             else
             {
                 inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);
-                std::cout << host << " connected on " << ntohs(client.sin_port) << std::endl;
             }
             u_long arg = 1;
             ioctlsocket(client_socket, FIONBIO, &arg);
@@ -457,7 +455,7 @@ struct TCPClient : public Socket
         return 0;
     }
 
-    void sendTo(char* data, int data_len, Connection con){
+    void sendTo(const char* data, int data_len, Connection con){
         int status = send(con.client_socket, data, data_len, 0);
         if(status == -1){
             std::cout << "sendTo failed." << std::endl;
@@ -476,6 +474,7 @@ struct TCPClient : public Socket
             connection = Connection(socket_id, s_hint);
             receive_thread = std::thread(&TCPClient::receiveLoop, this);
         }
+        std::cout << "Result from connect....... " << res << std::endl;
         return res;
     }
 
