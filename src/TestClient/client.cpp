@@ -12,9 +12,16 @@ int main(){
 
     //std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(1));
     tpc::Client_TCRequestPacket p2;
-    p2.payload = "Another test with more data in it!";
+    p2.payload = "Another test with more data!";
     p2.payload_size = p2.payload.size();
     auto [buffer2, len2] = p2.toBuffer();
     r.commit(buffer2.c_str(), len2);
+
+    tpc::Client_TCRequestPacket p3;
+    p3.payload = "Some test datadatadata";
+    p3.payload_size = p3.payload.size();
+    auto [buffer3, len3] = p3.toBuffer();
+    r.commit(buffer3.c_str(), len3);
+
     std::cin.get();
 }

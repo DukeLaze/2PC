@@ -1,0 +1,64 @@
+\hypertarget{classherosockets_1_1_callback}{}\doxysection{herosockets\+::Callback Class Reference}
+\label{classherosockets_1_1_callback}\index{herosockets::Callback@{herosockets::Callback}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_acb6fbff3e581238dd3daaad14e295a1d}\label{classherosockets_1_1_callback_acb6fbff3e581238dd3daaad14e295a1d}} 
+typedef void($\ast$ {\bfseries on\+Receive}) (void $\ast$object, const char $\ast$data, int data\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con)
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_a62438800de5ed9c40b25e8ae5f55c27d}\label{classherosockets_1_1_callback_a62438800de5ed9c40b25e8ae5f55c27d}} 
+typedef void($\ast$ {\bfseries on\+Connect}) (void $\ast$object, \mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con, std\+::string ip)
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_a2c8d074507633ddb0a380e1bcddee460}\label{classherosockets_1_1_callback_a2c8d074507633ddb0a380e1bcddee460}} 
+typedef void($\ast$ {\bfseries on\+Disconnect}) (void $\ast$object, \mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_a4b1c830417126f4ee636ff23ec5832af}\label{classherosockets_1_1_callback_a4b1c830417126f4ee636ff23ec5832af}} 
+void {\bfseries operator()} (char $\ast$data, int data\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con)
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_a117d9e40ef4ab050c32b8bb874eeef1c}\label{classherosockets_1_1_callback_a117d9e40ef4ab050c32b8bb874eeef1c}} 
+void {\bfseries operator()} (\mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con, std\+::string ip)
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_a76b54f9d70ae10a02197891fadadccbf}\label{classherosockets_1_1_callback_a76b54f9d70ae10a02197891fadadccbf}} 
+void {\bfseries operator()} (\mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_af3e16cbff5b215b8f8044a38e7dcc1b7}\label{classherosockets_1_1_callback_af3e16cbff5b215b8f8044a38e7dcc1b7}} 
+{\footnotesize template$<$typename T , void(\+T\+::$\ast$)(const char $\ast$, int, Connection) method$>$ }\\static \mbox{\hyperlink{classherosockets_1_1_callback}{Callback}} {\bfseries create\+\_\+on\+\_\+receive} (T $\ast$obj)
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_a4241458930cb80306211436cb4945870}\label{classherosockets_1_1_callback_a4241458930cb80306211436cb4945870}} 
+{\footnotesize template$<$typename T , void(\+T\+::$\ast$)(\+Connection, std\+::string) method$>$ }\\static \mbox{\hyperlink{classherosockets_1_1_callback}{Callback}} {\bfseries create\+\_\+on\+\_\+connect} (T $\ast$obj)
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_aa66e47603e1490ef7576f0c8a3cc8194}\label{classherosockets_1_1_callback_aa66e47603e1490ef7576f0c8a3cc8194}} 
+{\footnotesize template$<$typename T , void(\+T\+::$\ast$)(\+Connection) method$>$ }\\static \mbox{\hyperlink{classherosockets_1_1_callback}{Callback}} {\bfseries create\+\_\+on\+\_\+disconnect} (T $\ast$obj)
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_ad89c3d472c8197d528cf5b799eb9b254}\label{classherosockets_1_1_callback_ad89c3d472c8197d528cf5b799eb9b254}} 
+{\footnotesize template$<$typename T , void(\+T\+::$\ast$)(const char $\ast$, int, Connection) method$>$ }\\static void {\bfseries bind\+\_\+on\+\_\+receive} (void $\ast$object, const char $\ast$data, int data\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con)
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_ac1f43102a9cd1d153905526472def92b}\label{classherosockets_1_1_callback_ac1f43102a9cd1d153905526472def92b}} 
+{\footnotesize template$<$typename T , void(\+T\+::$\ast$)(\+Connection, std\+::string) method$>$ }\\static void {\bfseries bind\+\_\+on\+\_\+connect} (void $\ast$object, \mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con, std\+::string ip)
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_a48e4f67e9f3b67b2bbff2ec71ac5d058}\label{classherosockets_1_1_callback_a48e4f67e9f3b67b2bbff2ec71ac5d058}} 
+{\footnotesize template$<$typename T , void(\+T\+::$\ast$)(\+Connection) method$>$ }\\static void {\bfseries bind\+\_\+on\+\_\+disconnect} (void $\ast$object, \mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_adfdba3b0e83c04f386f1f27e1559cf79}\label{classherosockets_1_1_callback_adfdba3b0e83c04f386f1f27e1559cf79}} 
+on\+Receive {\bfseries on\+\_\+receive\+\_\+func}
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_abfe3094e2b2d2f22cf47574e9e9ceaf0}\label{classherosockets_1_1_callback_abfe3094e2b2d2f22cf47574e9e9ceaf0}} 
+on\+Connect {\bfseries on\+\_\+connect\+\_\+func}
+\item 
+\mbox{\Hypertarget{classherosockets_1_1_callback_a7e8242ba39bf76257992ba14d3ed4f43}\label{classherosockets_1_1_callback_a7e8242ba39bf76257992ba14d3ed4f43}} 
+on\+Disconnect {\bfseries on\+\_\+disconnect\+\_\+func}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/herosockets.\+h\end{DoxyCompactItemize}

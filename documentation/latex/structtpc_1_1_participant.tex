@@ -1,0 +1,92 @@
+\hypertarget{structtpc_1_1_participant}{}\doxysection{tpc\+::Participant Struct Reference}
+\label{structtpc_1_1_participant}\index{tpc::Participant@{tpc::Participant}}
+
+
+Class for the participant part of the 2PC proccess.  
+
+
+
+
+{\ttfamily \#include $<$tpc.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structtpc_1_1_participant_a9dfc02afe1872c69d35ed9e0a2edddad}{Participant}} (std\+::string ip, short port)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{structtpc_1_1_participant}{Participant}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structtpc_1_1_participant_ae493664d066c9920ec72d97e48b90aff}{on\+Receive}} (const char $\ast$data, int dat\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
+\begin{DoxyCompactList}\small\item\em A function for what to do when receiving data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structtpc_1_1_participant_ad5cf411433d67f5a77604dba772a4e7a}\label{structtpc_1_1_participant_ad5cf411433d67f5a77604dba772a4e7a}} 
+void {\bfseries on\+Rollback} ()
+\item 
+\mbox{\Hypertarget{structtpc_1_1_participant_a9d6bcd99d7cbb873d870497edcb0fe28}\label{structtpc_1_1_participant_a9d6bcd99d7cbb873d870497edcb0fe28}} 
+bool {\bfseries on\+Vote} (\mbox{\hyperlink{structtpc_1_1_t_c___participant_vote_packet}{T\+C\+\_\+\+Participant\+Vote\+Packet}} packet)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_participant_a46edb462daf97883e18f544d3ac17bfe}\label{structtpc_1_1_participant_a46edb462daf97883e18f544d3ac17bfe}} 
+bool {\bfseries on\+Commit} (\mbox{\hyperlink{structtpc_1_1_t_c___participant_commit_packet}{T\+C\+\_\+\+Participant\+Commit\+Packet}} packet)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_participant_aac63cd55b840ff948992de4962fc887d}\label{structtpc_1_1_participant_aac63cd55b840ff948992de4962fc887d}} 
+void {\bfseries send} (const char $\ast$data, int data\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structtpc_1_1_participant_ac01a98bea3c58737b61bba402db5db04}\label{structtpc_1_1_participant_ac01a98bea3c58737b61bba402db5db04}} 
+\mbox{\hyperlink{structherosockets_1_1_t_c_p_client}{herosockets\+::\+T\+C\+P\+Client}} {\bfseries socket}
+\item 
+\mbox{\Hypertarget{structtpc_1_1_participant_ab087004fa393811038421f8815986ebd}\label{structtpc_1_1_participant_ab087004fa393811038421f8815986ebd}} 
+bool($\ast$ {\bfseries vote\+Callback} )(int id, std\+::string payload)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_participant_a5f8df601e4770943062b3f605095323e}\label{structtpc_1_1_participant_a5f8df601e4770943062b3f605095323e}} 
+bool($\ast$ {\bfseries commit\+Callback} )(int id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for the participant part of the 2PC proccess. 
+
+A \mbox{\hyperlink{structtpc_1_1_participant}{Participant}} class with functionality for voting, commiting, rollbacking and communicating. The class also provides logs that are updated with each attempt to commit to keep track of changes and to allow for rollback. An instance of the class is supposed to be run on the server-\/side. In the 2PC process it plays the same role as a database managing system like My\+S\+QL would. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structtpc_1_1_participant_a9dfc02afe1872c69d35ed9e0a2edddad}\label{structtpc_1_1_participant_a9dfc02afe1872c69d35ed9e0a2edddad}} 
+\index{tpc::Participant@{tpc::Participant}!Participant@{Participant}}
+\index{Participant@{Participant}!tpc::Participant@{tpc::Participant}}
+\doxysubsubsection{\texorpdfstring{Participant()}{Participant()}}
+{\footnotesize\ttfamily tpc\+::\+Participant\+::\+Participant (\begin{DoxyParamCaption}\item[{std\+::string}]{ip,  }\item[{short}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for the \mbox{\hyperlink{structtpc_1_1_participant}{Participant}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & The ip of the socket \\
+\hline
+{\em port} & the port of the socket Creates a socket with given ip and port and initializes the logs for the system. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structtpc_1_1_participant_ae493664d066c9920ec72d97e48b90aff}\label{structtpc_1_1_participant_ae493664d066c9920ec72d97e48b90aff}} 
+\index{tpc::Participant@{tpc::Participant}!onReceive@{onReceive}}
+\index{onReceive@{onReceive}!tpc::Participant@{tpc::Participant}}
+\doxysubsubsection{\texorpdfstring{onReceive()}{onReceive()}}
+{\footnotesize\ttfamily void tpc\+::\+Participant\+::on\+Receive (\begin{DoxyParamCaption}\item[{const char $\ast$}]{data,  }\item[{int}]{dat\+\_\+len,  }\item[{\mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}}}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A function for what to do when receiving data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Data that was sent \\
+\hline
+{\em con} & The connection over which the data was sent \textbackslash{} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/tpc.\+h\end{DoxyCompactItemize}

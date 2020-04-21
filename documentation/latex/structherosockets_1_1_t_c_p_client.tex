@@ -1,0 +1,56 @@
+\hypertarget{structherosockets_1_1_t_c_p_client}{}\doxysection{herosockets\+::T\+C\+P\+Client Struct Reference}
+\label{structherosockets_1_1_t_c_p_client}\index{herosockets::TCPClient@{herosockets::TCPClient}}
+Inheritance diagram for herosockets\+::T\+C\+P\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structherosockets_1_1_t_c_p_client}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_a5b0dabf57af1300bd43c50fb1bc6928e}\label{structherosockets_1_1_t_c_p_client_a5b0dabf57af1300bd43c50fb1bc6928e}} 
+{\bfseries T\+C\+P\+Client} (int domain, const char $\ast$ip, short port)
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_a798ccb10cdb2d60cfed3de3d511ab4b8}\label{structherosockets_1_1_t_c_p_client_a798ccb10cdb2d60cfed3de3d511ab4b8}} 
+int {\bfseries start} ()
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_ac96a9b36524fc9ea8d377abdbd4a6484}\label{structherosockets_1_1_t_c_p_client_ac96a9b36524fc9ea8d377abdbd4a6484}} 
+void {\bfseries send\+To} (const char $\ast$data, int data\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} con)
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_a801b2906f4aea081c61a237684d06b61}\label{structherosockets_1_1_t_c_p_client_a801b2906f4aea081c61a237684d06b61}} 
+int {\bfseries connect\+To} (const char $\ast$ip, short port)
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_a5dc2104519abb02e0c958694c455e470}\label{structherosockets_1_1_t_c_p_client_a5dc2104519abb02e0c958694c455e470}} 
+void {\bfseries receive\+Loop} ()
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_a53499350c016506f7776b5006d1cbcd3}\label{structherosockets_1_1_t_c_p_client_a53499350c016506f7776b5006d1cbcd3}} 
+int {\bfseries quit} ()
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_af55eea3a10302b8216da510cb4a450e1}\label{structherosockets_1_1_t_c_p_client_af55eea3a10302b8216da510cb4a450e1}} 
+int {\bfseries close\+Socket} (S\+O\+C\+K\+ET socket\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_a197697234c34c4a27d7b30f496acf5e1}\label{structherosockets_1_1_t_c_p_client_a197697234c34c4a27d7b30f496acf5e1}} 
+bool {\bfseries quitting} = false
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_ab13b5cdced1655f3ff7fe774ebff5718}\label{structherosockets_1_1_t_c_p_client_ab13b5cdced1655f3ff7fe774ebff5718}} 
+\mbox{\hyperlink{classherosockets_1_1_connection}{Connection}} {\bfseries connection} = \mbox{\hyperlink{classherosockets_1_1_connection}{Connection}}(socket\+\_\+id, hint)
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_abfad378bae9298505ed84a76c82952dd}\label{structherosockets_1_1_t_c_p_client_abfad378bae9298505ed84a76c82952dd}} 
+S\+O\+C\+K\+ET {\bfseries socket\+\_\+id}
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_ae24ab0e82252c3f4738b10a6de68e163}\label{structherosockets_1_1_t_c_p_client_ae24ab0e82252c3f4738b10a6de68e163}} 
+sockaddr\+\_\+in {\bfseries hint}
+\item 
+\mbox{\Hypertarget{structherosockets_1_1_t_c_p_client_aa45e6bf95b8cb95a70477f7d294df2c9}\label{structherosockets_1_1_t_c_p_client_aa45e6bf95b8cb95a70477f7d294df2c9}} 
+std\+::thread {\bfseries receive\+\_\+thread}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/herosockets.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,61 @@
+\hypertarget{structtpc_1_1_t_c}{}\doxysection{tpc\+::TC Struct Reference}
+\label{structtpc_1_1_t_c}\index{tpc::TC@{tpc::TC}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a470ea089475d605634a82b5f4b2363d6}\label{structtpc_1_1_t_c_a470ea089475d605634a82b5f4b2363d6}} 
+{\bfseries TC} (std\+::string ip, short port)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a174ef93da94d9c8797aaf8a0a35e852f}\label{structtpc_1_1_t_c_a174ef93da94d9c8797aaf8a0a35e852f}} 
+void {\bfseries on\+Receive} (const char $\ast$data, int data\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a666d78556e5f8d30d3b3ef27b1cb9890}\label{structtpc_1_1_t_c_a666d78556e5f8d30d3b3ef27b1cb9890}} 
+void {\bfseries parse\+Received\+Data} (std\+::string data, \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} \&con)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_adaa91acfb63521d061863e5d8335e2c9}\label{structtpc_1_1_t_c_adaa91acfb63521d061863e5d8335e2c9}} 
+void {\bfseries on\+Connect} (\mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con, std\+::string ip)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_ab330fe17342e04ca7e21c0b9203b1861}\label{structtpc_1_1_t_c_ab330fe17342e04ca7e21c0b9203b1861}} 
+void {\bfseries on\+Disconnect} (\mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_aeec7a4b8070136122c4cc0d5b20f77c1}\label{structtpc_1_1_t_c_aeec7a4b8070136122c4cc0d5b20f77c1}} 
+void {\bfseries send} (const char $\ast$data, int data\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_aa9f3be15d669611868c6676aa1ce42df}\label{structtpc_1_1_t_c_aa9f3be15d669611868c6676aa1ce42df}} 
+\mbox{\hyperlink{structtpc_1_1_transaction}{Transaction}} {\bfseries find\+Transaction} (int transaction\+\_\+id)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a276be341f76cee8e940519bfb06134a1}\label{structtpc_1_1_t_c_a276be341f76cee8e940519bfb06134a1}} 
+\mbox{\hyperlink{structtpc_1_1_client}{Client}} \& {\bfseries find\+Client} (\mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a8d8c65900eec051232365403f126f2bb}\label{structtpc_1_1_t_c_a8d8c65900eec051232365403f126f2bb}} 
+std\+::vector$<$ \mbox{\hyperlink{structtpc_1_1_client}{Client}} $>$ {\bfseries find\+Participants} ()
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_aff9af2e6ca8ae432c09f8b99ba9842fb}\label{structtpc_1_1_t_c_aff9af2e6ca8ae432c09f8b99ba9842fb}} 
+void {\bfseries remove\+Client} (\mbox{\hyperlink{structtpc_1_1_client}{Client}} client)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a3cd59c939db7629511bf8237fc3ca615}\label{structtpc_1_1_t_c_a3cd59c939db7629511bf8237fc3ca615}} 
+std\+::mutex {\bfseries connections\+\_\+mutex}
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_ae6d84e94ebd1ccc788ae0181dbbd0c30}\label{structtpc_1_1_t_c_ae6d84e94ebd1ccc788ae0181dbbd0c30}} 
+std\+::vector$<$ \mbox{\hyperlink{structtpc_1_1_client}{Client}} $>$ {\bfseries connections}
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a98f1539b01e585ffd325c48c4e6caa53}\label{structtpc_1_1_t_c_a98f1539b01e585ffd325c48c4e6caa53}} 
+std\+::mutex {\bfseries transactions\+\_\+mutex}
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a6f00b6cd1dfe132967f68bb9b67748e1}\label{structtpc_1_1_t_c_a6f00b6cd1dfe132967f68bb9b67748e1}} 
+std\+::vector$<$ \mbox{\hyperlink{structtpc_1_1_transaction}{Transaction}} $>$ {\bfseries transactions}
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a893e570e6825400a85193bdae8ae64fe}\label{structtpc_1_1_t_c_a893e570e6825400a85193bdae8ae64fe}} 
+std\+::atomic$<$ bool $>$ {\bfseries quit}
+\item 
+\mbox{\Hypertarget{structtpc_1_1_t_c_a2ba54c3bcfe6246197004255389ae103}\label{structtpc_1_1_t_c_a2ba54c3bcfe6246197004255389ae103}} 
+\mbox{\hyperlink{structherosockets_1_1_t_c_p_server}{herosockets\+::\+T\+C\+P\+Server}} {\bfseries listening\+\_\+socket}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/tpc.\+h\end{DoxyCompactItemize}

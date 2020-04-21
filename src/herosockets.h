@@ -7,7 +7,7 @@
 
 #ifdef _WIN32 /*If compiling for Windows platform */
 
-#define _WIN32_WINNT 0x0601  /*Windows 7, allows us to use functions such as inet_pton */
+#define _WIN32_WINNT 0x0601  /*Windows 7, allows us to use functions such as inet_pton when using MINGW-64 */
 #define NTDDI_VERSION 0x0601 /*Same as above */
 #include <winsock2.h>
 #include <ws2tcpip.h>
