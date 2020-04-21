@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">2PC
    </div>
-   <div id="projectbrief">A single header library that facilitates Two Phase Commit over TCP/IP</div>
+   <div id="projectbrief">A duo header library that facilitates Two Phase Commit over TCP/IP</div>
   </td>
  </tr>
  </tbody>
@@ -88,30 +88,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae493664d066c9920ec72d97e48b90aff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtpc_1_1_participant.html#ae493664d066c9920ec72d97e48b90aff">onReceive</a> (const char *data, int dat_len, <a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con)</td></tr>
 <tr class="memdesc:ae493664d066c9920ec72d97e48b90aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function for what to do when receiving data.  <a href="structtpc_1_1_participant.html#ae493664d066c9920ec72d97e48b90aff">More...</a><br /></td></tr>
 <tr class="separator:ae493664d066c9920ec72d97e48b90aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5cf411433d67f5a77604dba772a4e7a"><td class="memItemLeft" align="right" valign="top"><a id="ad5cf411433d67f5a77604dba772a4e7a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onRollback</b> ()</td></tr>
-<tr class="separator:ad5cf411433d67f5a77604dba772a4e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d6bcd99d7cbb873d870497edcb0fe28"><td class="memItemLeft" align="right" valign="top"><a id="a9d6bcd99d7cbb873d870497edcb0fe28"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>onVote</b> (<a class="el" href="structtpc_1_1_t_c___participant_vote_packet.html">TC_ParticipantVotePacket</a> packet)</td></tr>
+<tr class="memitem:ae8102a698a24981571dbc59e853d555b"><td class="memItemLeft" align="right" valign="top"><a id="ae8102a698a24981571dbc59e853d555b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtpc_1_1_participant.html#ae8102a698a24981571dbc59e853d555b">onRollback</a> (int transaction_id)</td></tr>
+<tr class="memdesc:ae8102a698a24981571dbc59e853d555b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for rolling back to previous state Replaces the contents of the log file with the contents of the revertlog file. <br /></td></tr>
+<tr class="separator:ae8102a698a24981571dbc59e853d555b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d6bcd99d7cbb873d870497edcb0fe28"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtpc_1_1_participant.html#a9d6bcd99d7cbb873d870497edcb0fe28">onVote</a> (<a class="el" href="structtpc_1_1_t_c___participant_vote_packet.html">TC_ParticipantVotePacket</a> packet)</td></tr>
+<tr class="memdesc:a9d6bcd99d7cbb873d870497edcb0fe28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for deciding whether to vote yes or no.  <a href="structtpc_1_1_participant.html#a9d6bcd99d7cbb873d870497edcb0fe28">More...</a><br /></td></tr>
 <tr class="separator:a9d6bcd99d7cbb873d870497edcb0fe28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46edb462daf97883e18f544d3ac17bfe"><td class="memItemLeft" align="right" valign="top"><a id="a46edb462daf97883e18f544d3ac17bfe"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>onCommit</b> (<a class="el" href="structtpc_1_1_t_c___participant_commit_packet.html">TC_ParticipantCommitPacket</a> packet)</td></tr>
+<tr class="memitem:a46edb462daf97883e18f544d3ac17bfe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtpc_1_1_participant.html#a46edb462daf97883e18f544d3ac17bfe">onCommit</a> (<a class="el" href="structtpc_1_1_t_c___participant_commit_packet.html">TC_ParticipantCommitPacket</a> packet)</td></tr>
+<tr class="memdesc:a46edb462daf97883e18f544d3ac17bfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that returns a bool of whether the <a class="el" href="structtpc_1_1_participant.html#a5f8df601e4770943062b3f605095323e">commitCallback()</a> succeeded.  <a href="structtpc_1_1_participant.html#a46edb462daf97883e18f544d3ac17bfe">More...</a><br /></td></tr>
 <tr class="separator:a46edb462daf97883e18f544d3ac17bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac63cd55b840ff948992de4962fc887d"><td class="memItemLeft" align="right" valign="top"><a id="aac63cd55b840ff948992de4962fc887d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> (const char *data, int data_len, <a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con)</td></tr>
-<tr class="separator:aac63cd55b840ff948992de4962fc887d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1928ef1cd1e9c1441d9200b57209d7f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtpc_1_1_participant.html#a1928ef1cd1e9c1441d9200b57209d7f1">sendTo</a> (const char *data, int data_len, <a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con)</td></tr>
+<tr class="memdesc:a1928ef1cd1e9c1441d9200b57209d7f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for sending data through a given connection.  <a href="structtpc_1_1_participant.html#a1928ef1cd1e9c1441d9200b57209d7f1">More...</a><br /></td></tr>
+<tr class="separator:a1928ef1cd1e9c1441d9200b57209d7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ac01a98bea3c58737b61bba402db5db04"><td class="memItemLeft" align="right" valign="top"><a id="ac01a98bea3c58737b61bba402db5db04"></a>
-<a class="el" href="structherosockets_1_1_t_c_p_client.html">herosockets::TCPClient</a>&#160;</td><td class="memItemRight" valign="bottom"><b>socket</b></td></tr>
+<tr class="memitem:ac01a98bea3c58737b61bba402db5db04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structherosockets_1_1_t_c_p_client.html">herosockets::TCPClient</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtpc_1_1_participant.html#ac01a98bea3c58737b61bba402db5db04">socket</a></td></tr>
 <tr class="separator:ac01a98bea3c58737b61bba402db5db04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab087004fa393811038421f8815986ebd"><td class="memItemLeft" align="right" valign="top"><a id="ab087004fa393811038421f8815986ebd"></a>
-bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>voteCallback</b> )(int id, std::string payload)</td></tr>
+<tr class="memitem:a84bfe4a7d35fcbfdb2e9d29a35a3eba7"><td class="memItemLeft" align="right" valign="top"><a id="a84bfe4a7d35fcbfdb2e9d29a35a3eba7"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>buffer</b></td></tr>
+<tr class="separator:a84bfe4a7d35fcbfdb2e9d29a35a3eba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab087004fa393811038421f8815986ebd"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtpc_1_1_participant.html#ab087004fa393811038421f8815986ebd">voteCallback</a> )(int id, std::string payload)</td></tr>
 <tr class="separator:ab087004fa393811038421f8815986ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f8df601e4770943062b3f605095323e"><td class="memItemLeft" align="right" valign="top"><a id="a5f8df601e4770943062b3f605095323e"></a>
-bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>commitCallback</b> )(int id)</td></tr>
+<tr class="memitem:a5f8df601e4770943062b3f605095323e"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtpc_1_1_participant.html#a5f8df601e4770943062b3f605095323e">commitCallback</a> )(int id)</td></tr>
 <tr class="separator:a5f8df601e4770943062b3f605095323e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af045800e9154dca004b990d14dd177af"><td class="memItemLeft" align="right" valign="top"><a id="af045800e9154dca004b990d14dd177af"></a>
+std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>log_mutex</b></td></tr>
+<tr class="separator:af045800e9154dca004b990d14dd177af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for the participant part of the 2PC proccess. </p>
@@ -154,8 +158,8 @@ bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>commitCallback</b> 
 <p>Constructor for the <a class="el" href="structtpc_1_1_participant.html" title="Class for the participant part of the 2PC proccess.">Participant</a> class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ip</td><td>The ip of the socket </td></tr>
-    <tr><td class="paramname">port</td><td>the port of the socket Creates a socket with given ip and port and initializes the logs for the system. </td></tr>
+    <tr><td class="paramname">ip</td><td>The ip of the socket. </td></tr>
+    <tr><td class="paramname">port</td><td>the port of the socket. Creates a socket with given ip and port and initializes the logs for the system. </td></tr>
   </table>
   </dd>
 </dl>
@@ -163,6 +167,40 @@ bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>commitCallback</b> 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a46edb462daf97883e18f544d3ac17bfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46edb462daf97883e18f544d3ac17bfe">&#9670;&nbsp;</a></span>onCommit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tpc::Participant::onCommit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtpc_1_1_t_c___participant_commit_packet.html">TC_ParticipantCommitPacket</a>&#160;</td>
+          <td class="paramname"><em>packet</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function that returns a bool of whether the <a class="el" href="structtpc_1_1_participant.html#a5f8df601e4770943062b3f605095323e">commitCallback()</a> succeeded. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>Packet with what to commit. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae493664d066c9920ec72d97e48b90aff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae493664d066c9920ec72d97e48b90aff">&#9670;&nbsp;</a></span>onReceive()</h2>
 
@@ -206,11 +244,146 @@ bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>commitCallback</b> 
 <p>A function for what to do when receiving data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td>Data that was sent </td></tr>
-    <tr><td class="paramname">con</td><td>The connection over which the data was sent \ </td></tr>
+    <tr><td class="paramname">data</td><td>Data that was sent. </td></tr>
+    <tr><td class="paramname">con</td><td>The connection over which the data was sent. </td></tr>
+    <tr><td class="paramname">dat_len</td><td>Length of the data that was sent.</td></tr>
   </table>
   </dd>
 </dl>
+<p>This function provides different functionality depending on the type of package that was sent. It also checks each packet for valid format and info to ensure we only execute on messages from valid clients. </p>
+
+</div>
+</div>
+<a id="a9d6bcd99d7cbb873d870497edcb0fe28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d6bcd99d7cbb873d870497edcb0fe28">&#9670;&nbsp;</a></span>onVote()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tpc::Participant::onVote </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtpc_1_1_t_c___participant_vote_packet.html">TC_ParticipantVotePacket</a>&#160;</td>
+          <td class="paramname"><em>packet</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function for deciding whether to vote yes or no. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>The packet of data which <a class="el" href="structtpc_1_1_t_c.html" title="TC is used as a transaction coordinator.">TC</a> wants us to commit.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Updates the log with the contents of the packet, checks whether the logs are good and checks the result of <a class="el" href="structtpc_1_1_participant.html#ab087004fa393811038421f8815986ebd">voteCallback()</a> before deciding on whether to vote yes. </p>
+
+</div>
+</div>
+<a id="a1928ef1cd1e9c1441d9200b57209d7f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1928ef1cd1e9c1441d9200b57209d7f1">&#9670;&nbsp;</a></span>sendTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tpc::Participant::sendTo </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>data_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a>&#160;</td>
+          <td class="paramname"><em>con</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function for sending data through a given connection. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Data to be sent. </td></tr>
+    <tr><td class="paramname">data_len</td><td>Length of data. </td></tr>
+    <tr><td class="paramname">con</td><td>Connection through which data should be sent. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5f8df601e4770943062b3f605095323e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f8df601e4770943062b3f605095323e">&#9670;&nbsp;</a></span>commitCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool(* tpc::Participant::commitCallback) (int id)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Provides a way for the consumers of our library to safely commit the data. </p>
+
+</div>
+</div>
+<a id="ac01a98bea3c58737b61bba402db5db04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac01a98bea3c58737b61bba402db5db04">&#9670;&nbsp;</a></span>socket</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structherosockets_1_1_t_c_p_client.html">herosockets::TCPClient</a> tpc::Participant::socket</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>TCPClient </p>
+
+</div>
+</div>
+<a id="ab087004fa393811038421f8815986ebd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab087004fa393811038421f8815986ebd">&#9670;&nbsp;</a></span>voteCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool(* tpc::Participant::voteCallback) (int id, std::string payload)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Provides a way for the consumers of our library to prepare for committing the data. </p>
 
 </div>
 </div>

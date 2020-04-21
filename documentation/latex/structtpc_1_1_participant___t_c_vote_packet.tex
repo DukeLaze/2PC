@@ -1,5 +1,14 @@
 \hypertarget{structtpc_1_1_participant___t_c_vote_packet}{}\doxysection{tpc\+::Participant\+\_\+\+T\+C\+Vote\+Packet Struct Reference}
 \label{structtpc_1_1_participant___t_c_vote_packet}\index{tpc::Participant\_TCVotePacket@{tpc::Participant\_TCVotePacket}}
+
+
+A packet sent by a participant to \mbox{\hyperlink{structtpc_1_1_transaction}{Transaction}} Coordinator with the results of the vote. Contains the transaction\+\_\+id and a response (1 or 0 signifying yes or no).  
+
+
+
+
+{\ttfamily \#include $<$tpc.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,10 +34,13 @@ std\+::string {\bfseries response}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{structtpc_1_1_participant___t_c_vote_packet_aae1a0df0adb0c4720f48ee0cef2d5561}\label{structtpc_1_1_participant___t_c_vote_packet_aae1a0df0adb0c4720f48ee0cef2d5561}} 
-static const Packet\+Type {\bfseries packet\+\_\+id} = Packet\+Type\+::\+Participant\+\_\+\+T\+C\+Vote
+static const \mbox{\hyperlink{tpc_8h_ab0e9daa04e747ef00d99197d477a9252}{Packet\+Type}} {\bfseries packet\+\_\+id} = Packet\+Type\+::\+Participant\+\_\+\+T\+C\+Vote
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+A packet sent by a participant to \mbox{\hyperlink{structtpc_1_1_transaction}{Transaction}} Coordinator with the results of the vote. Contains the transaction\+\_\+id and a response (1 or 0 signifying yes or no). 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/tpc.\+h\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{tpc_8h}{tpc.\+h}}\end{DoxyCompactItemize}

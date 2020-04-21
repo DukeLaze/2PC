@@ -1,5 +1,14 @@
 \hypertarget{structtpc_1_1_participant___t_c_ack_packet}{}\doxysection{tpc\+::Participant\+\_\+\+T\+C\+Ack\+Packet Struct Reference}
 \label{structtpc_1_1_participant___t_c_ack_packet}\index{tpc::Participant\_TCAckPacket@{tpc::Participant\_TCAckPacket}}
+
+
+A packet sent by a participant to \mbox{\hyperlink{structtpc_1_1_transaction}{Transaction}} Coordinator in the event of a rollback in the commit stage In the event that the commit stage succeeded we will instead send a \mbox{\hyperlink{structtpc_1_1_participant___t_c_commit_packet}{Participant\+\_\+\+T\+C\+Commit\+Packet}} with a value of 1.  
+
+
+
+
+{\ttfamily \#include $<$tpc.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -17,18 +26,18 @@ static \mbox{\hyperlink{structtpc_1_1_participant___t_c_ack_packet}{Participant\
 \item 
 \mbox{\Hypertarget{structtpc_1_1_participant___t_c_ack_packet_aa6c91e1e1e27b7ee6d6cde0d86d5fdaf}\label{structtpc_1_1_participant___t_c_ack_packet_aa6c91e1e1e27b7ee6d6cde0d86d5fdaf}} 
 int {\bfseries transaction\+\_\+id}
-\item 
-\mbox{\Hypertarget{structtpc_1_1_participant___t_c_ack_packet_ae607ec0c4d5077ceab3798d761a6e795}\label{structtpc_1_1_participant___t_c_ack_packet_ae607ec0c4d5077ceab3798d761a6e795}} 
-std\+::string {\bfseries response}
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{structtpc_1_1_participant___t_c_ack_packet_aae78ffd6bf12453aec36dfc1176b3649}\label{structtpc_1_1_participant___t_c_ack_packet_aae78ffd6bf12453aec36dfc1176b3649}} 
-static const Packet\+Type {\bfseries packet\+\_\+id} = Packet\+Type\+::\+Participant\+\_\+\+T\+C\+Ack
+static const \mbox{\hyperlink{tpc_8h_ab0e9daa04e747ef00d99197d477a9252}{Packet\+Type}} {\bfseries packet\+\_\+id} = Packet\+Type\+::\+Participant\+\_\+\+T\+C\+Ack
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+A packet sent by a participant to \mbox{\hyperlink{structtpc_1_1_transaction}{Transaction}} Coordinator in the event of a rollback in the commit stage In the event that the commit stage succeeded we will instead send a \mbox{\hyperlink{structtpc_1_1_participant___t_c_commit_packet}{Participant\+\_\+\+T\+C\+Commit\+Packet}} with a value of 1. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/tpc.\+h\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{tpc_8h}{tpc.\+h}}\end{DoxyCompactItemize}

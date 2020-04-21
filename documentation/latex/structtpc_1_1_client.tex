@@ -1,11 +1,19 @@
 \hypertarget{structtpc_1_1_client}{}\doxysection{tpc\+::Client Struct Reference}
 \label{structtpc_1_1_client}\index{tpc::Client@{tpc::Client}}
+
+
+\mbox{\hyperlink{structtpc_1_1_client}{Client}} represents a network connection and acts as a wrapper for \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}}. con contains a S\+O\+C\+K\+ET file descriptor and sockaddr\+\_\+in connection info. buffer accumulates the data streamed by T\+CP. type is used to identify what kind of client we are.  
+
+
+
+
+{\ttfamily \#include $<$tpc.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structtpc_1_1_client_aab1a82dbe45022247aa230674b6a08d7}\label{structtpc_1_1_client_aab1a82dbe45022247aa230674b6a08d7}} 
-{\bfseries Client} (\mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{structtpc_1_1_client_aab1a82dbe45022247aa230674b6a08d7}{Client}} (\mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
+\begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{structtpc_1_1_client}{Client}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -16,13 +24,31 @@
 std\+::string {\bfseries buffer} = \char`\"{}\char`\"{}
 \item 
 \mbox{\Hypertarget{structtpc_1_1_client_afd11a0f0f52157c010a1ae0da6319bd1}\label{structtpc_1_1_client_afd11a0f0f52157c010a1ae0da6319bd1}} 
-Client\+Type {\bfseries type} = Client\+Type\+::\+U\+N\+K\+N\+O\+WN
-\item 
-\mbox{\Hypertarget{structtpc_1_1_client_a3352adf400ed43d389a98911449d4b7e}\label{structtpc_1_1_client_a3352adf400ed43d389a98911449d4b7e}} 
-Client\+State {\bfseries state} = Client\+State\+::\+R\+E\+A\+DY
+\mbox{\hyperlink{tpc_8h_aa63ccb8811b41940f842f897fb4a3003}{Client\+Type}} {\bfseries type} = Client\+Type\+::\+U\+N\+K\+N\+O\+WN
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structtpc_1_1_client}{Client}} represents a network connection and acts as a wrapper for \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}}. con contains a S\+O\+C\+K\+ET file descriptor and sockaddr\+\_\+in connection info. buffer accumulates the data streamed by T\+CP. type is used to identify what kind of client we are. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structtpc_1_1_client_aab1a82dbe45022247aa230674b6a08d7}\label{structtpc_1_1_client_aab1a82dbe45022247aa230674b6a08d7}} 
+\index{tpc::Client@{tpc::Client}!Client@{Client}}
+\index{Client@{Client}!tpc::Client@{tpc::Client}}
+\doxysubsubsection{\texorpdfstring{Client()}{Client()}}
+{\footnotesize\ttfamily tpc\+::\+Client\+::\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}}}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \mbox{\hyperlink{structtpc_1_1_client}{Client}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}}} & con is used to set the member con. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/tpc.\+h\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{tpc_8h}{tpc.\+h}}\end{DoxyCompactItemize}

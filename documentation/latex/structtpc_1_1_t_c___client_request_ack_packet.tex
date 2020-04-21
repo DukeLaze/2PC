@@ -1,5 +1,14 @@
 \hypertarget{structtpc_1_1_t_c___client_request_ack_packet}{}\doxysection{tpc\+::T\+C\+\_\+\+Client\+Request\+Ack\+Packet Struct Reference}
 \label{structtpc_1_1_t_c___client_request_ack_packet}\index{tpc::TC\_ClientRequestAckPacket@{tpc::TC\_ClientRequestAckPacket}}
+
+
+A packet sent by a \mbox{\hyperlink{structtpc_1_1_transaction}{Transaction}} Coordinator to client in response to a \mbox{\hyperlink{structtpc_1_1_client___t_c_request_packet}{Client\+\_\+\+T\+C\+Request\+Packet}} to confirm the \mbox{\hyperlink{structtpc_1_1_t_c}{TC}} is working on the commit Contains the transaction id.  
+
+
+
+
+{\ttfamily \#include $<$tpc.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -15,9 +24,6 @@ static \mbox{\hyperlink{structtpc_1_1_t_c___client_request_ack_packet}{T\+C\+\_\
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structtpc_1_1_t_c___client_request_ack_packet_a1b9b45e108efb0e9680aeb924ccfb54b}\label{structtpc_1_1_t_c___client_request_ack_packet_a1b9b45e108efb0e9680aeb924ccfb54b}} 
-std\+::string {\bfseries response}
-\item 
 \mbox{\Hypertarget{structtpc_1_1_t_c___client_request_ack_packet_a6e6a0115a48c2f2d52d8d7a0805c88b6}\label{structtpc_1_1_t_c___client_request_ack_packet_a6e6a0115a48c2f2d52d8d7a0805c88b6}} 
 int {\bfseries transaction\+\_\+id}
 \end{DoxyCompactItemize}
@@ -25,10 +31,13 @@ int {\bfseries transaction\+\_\+id}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{structtpc_1_1_t_c___client_request_ack_packet_a21188b073a863792fb4eb467a6713149}\label{structtpc_1_1_t_c___client_request_ack_packet_a21188b073a863792fb4eb467a6713149}} 
-static const Packet\+Type {\bfseries packet\+\_\+id} = Packet\+Type\+::\+T\+C\+\_\+\+Client\+Request\+Ack
+static const \mbox{\hyperlink{tpc_8h_ab0e9daa04e747ef00d99197d477a9252}{Packet\+Type}} {\bfseries packet\+\_\+id} = Packet\+Type\+::\+T\+C\+\_\+\+Client\+Request\+Ack
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+A packet sent by a \mbox{\hyperlink{structtpc_1_1_transaction}{Transaction}} Coordinator to client in response to a \mbox{\hyperlink{structtpc_1_1_client___t_c_request_packet}{Client\+\_\+\+T\+C\+Request\+Packet}} to confirm the \mbox{\hyperlink{structtpc_1_1_t_c}{TC}} is working on the commit Contains the transaction id. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/tpc.\+h\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{tpc_8h}{tpc.\+h}}\end{DoxyCompactItemize}

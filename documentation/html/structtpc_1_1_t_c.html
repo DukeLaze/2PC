@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">2PC
    </div>
-   <div id="projectbrief">A single header library that facilitates Two Phase Commit over TCP/IP</div>
+   <div id="projectbrief">A duo header library that facilitates Two Phase Commit over TCP/IP</div>
   </td>
  </tr>
  </tbody>
@@ -74,6 +74,11 @@ $(function() {
 <div class="title">tpc::TC Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="structtpc_1_1_t_c.html" title="TC is used as a transaction coordinator.">TC</a> is used as a transaction coordinator.  
+ <a href="structtpc_1_1_t_c.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="tpc_8h_source.html">tpc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -83,53 +88,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a174ef93da94d9c8797aaf8a0a35e852f"><td class="memItemLeft" align="right" valign="top"><a id="a174ef93da94d9c8797aaf8a0a35e852f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onReceive</b> (const char *data, int data_len, <a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con)</td></tr>
 <tr class="separator:a174ef93da94d9c8797aaf8a0a35e852f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a666d78556e5f8d30d3b3ef27b1cb9890"><td class="memItemLeft" align="right" valign="top"><a id="a666d78556e5f8d30d3b3ef27b1cb9890"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>parseReceivedData</b> (std::string data, <a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> &amp;con)</td></tr>
-<tr class="separator:a666d78556e5f8d30d3b3ef27b1cb9890"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaa91acfb63521d061863e5d8335e2c9"><td class="memItemLeft" align="right" valign="top"><a id="adaa91acfb63521d061863e5d8335e2c9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onConnect</b> (<a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con, std::string ip)</td></tr>
-<tr class="separator:adaa91acfb63521d061863e5d8335e2c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab330fe17342e04ca7e21c0b9203b1861"><td class="memItemLeft" align="right" valign="top"><a id="ab330fe17342e04ca7e21c0b9203b1861"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onDisconnect</b> (<a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con)</td></tr>
-<tr class="separator:ab330fe17342e04ca7e21c0b9203b1861"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeec7a4b8070136122c4cc0d5b20f77c1"><td class="memItemLeft" align="right" valign="top"><a id="aeec7a4b8070136122c4cc0d5b20f77c1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> (const char *data, int data_len, <a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con)</td></tr>
-<tr class="separator:aeec7a4b8070136122c4cc0d5b20f77c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9f3be15d669611868c6676aa1ce42df"><td class="memItemLeft" align="right" valign="top"><a id="aa9f3be15d669611868c6676aa1ce42df"></a>
-<a class="el" href="structtpc_1_1_transaction.html">Transaction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>findTransaction</b> (int transaction_id)</td></tr>
-<tr class="separator:aa9f3be15d669611868c6676aa1ce42df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a276be341f76cee8e940519bfb06134a1"><td class="memItemLeft" align="right" valign="top"><a id="a276be341f76cee8e940519bfb06134a1"></a>
-<a class="el" href="structtpc_1_1_client.html">Client</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>findClient</b> (<a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con)</td></tr>
-<tr class="separator:a276be341f76cee8e940519bfb06134a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d8c65900eec051232365403f126f2bb"><td class="memItemLeft" align="right" valign="top"><a id="a8d8c65900eec051232365403f126f2bb"></a>
-std::vector&lt; <a class="el" href="structtpc_1_1_client.html">Client</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>findParticipants</b> ()</td></tr>
-<tr class="separator:a8d8c65900eec051232365403f126f2bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff9af2e6ca8ae432c09f8b99ba9842fb"><td class="memItemLeft" align="right" valign="top"><a id="aff9af2e6ca8ae432c09f8b99ba9842fb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeClient</b> (<a class="el" href="structtpc_1_1_client.html">Client</a> client)</td></tr>
-<tr class="separator:aff9af2e6ca8ae432c09f8b99ba9842fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3cd59c939db7629511bf8237fc3ca615"><td class="memItemLeft" align="right" valign="top"><a id="a3cd59c939db7629511bf8237fc3ca615"></a>
-std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>connections_mutex</b></td></tr>
-<tr class="separator:a3cd59c939db7629511bf8237fc3ca615"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6d84e94ebd1ccc788ae0181dbbd0c30"><td class="memItemLeft" align="right" valign="top"><a id="ae6d84e94ebd1ccc788ae0181dbbd0c30"></a>
-std::vector&lt; <a class="el" href="structtpc_1_1_client.html">Client</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>connections</b></td></tr>
-<tr class="separator:ae6d84e94ebd1ccc788ae0181dbbd0c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98f1539b01e585ffd325c48c4e6caa53"><td class="memItemLeft" align="right" valign="top"><a id="a98f1539b01e585ffd325c48c4e6caa53"></a>
-std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>transactions_mutex</b></td></tr>
-<tr class="separator:a98f1539b01e585ffd325c48c4e6caa53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f00b6cd1dfe132967f68bb9b67748e1"><td class="memItemLeft" align="right" valign="top"><a id="a6f00b6cd1dfe132967f68bb9b67748e1"></a>
-std::vector&lt; <a class="el" href="structtpc_1_1_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>transactions</b></td></tr>
-<tr class="separator:a6f00b6cd1dfe132967f68bb9b67748e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a893e570e6825400a85193bdae8ae64fe"><td class="memItemLeft" align="right" valign="top"><a id="a893e570e6825400a85193bdae8ae64fe"></a>
-std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>quit</b></td></tr>
-<tr class="separator:a893e570e6825400a85193bdae8ae64fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ba54c3bcfe6246197004255389ae103"><td class="memItemLeft" align="right" valign="top"><a id="a2ba54c3bcfe6246197004255389ae103"></a>
 <a class="el" href="structherosockets_1_1_t_c_p_server.html">herosockets::TCPServer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>listening_socket</b></td></tr>
 <tr class="separator:a2ba54c3bcfe6246197004255389ae103"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="structtpc_1_1_t_c.html" title="TC is used as a transaction coordinator.">TC</a> is used as a transaction coordinator. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/<a class="el" href="tpc_8h_source.html">tpc.h</a></li>
 </ul>
 </div><!-- contents -->

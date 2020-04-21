@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">2PC
    </div>
-   <div id="projectbrief">A single header library that facilitates Two Phase Commit over TCP/IP</div>
+   <div id="projectbrief">A duo header library that facilitates Two Phase Commit over TCP/IP</div>
   </td>
  </tr>
  </tbody>
@@ -76,6 +76,11 @@ $(function() {
 <div class="title">tpc::Participant_TCAckPacket Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A packet sent by a participant to <a class="el" href="structtpc_1_1_transaction.html" title="Transaction is used to track a client commit request from start to finish. Tracks the number of succe...">Transaction</a> Coordinator in the event of a rollback in the commit stage In the event that the commit stage succeeded we will instead send a <a class="el" href="structtpc_1_1_participant___t_c_commit_packet.html" title="A packet sent by a participant to Transaction Coordinator with the result of its commit phase Contain...">Participant_TCCommitPacket</a> with a value of 1.  
+ <a href="structtpc_1_1_participant___t_c_ack_packet.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="tpc_8h_source.html">tpc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -94,17 +99,16 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aa6c91e1e1e27b7ee6d6cde0d86d5fdaf"><td class="memItemLeft" align="right" valign="top"><a id="aa6c91e1e1e27b7ee6d6cde0d86d5fdaf"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>transaction_id</b></td></tr>
 <tr class="separator:aa6c91e1e1e27b7ee6d6cde0d86d5fdaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae607ec0c4d5077ceab3798d761a6e795"><td class="memItemLeft" align="right" valign="top"><a id="ae607ec0c4d5077ceab3798d761a6e795"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>response</b></td></tr>
-<tr class="separator:ae607ec0c4d5077ceab3798d761a6e795"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:aae78ffd6bf12453aec36dfc1176b3649"><td class="memItemLeft" align="right" valign="top"><a id="aae78ffd6bf12453aec36dfc1176b3649"></a>
-static const PacketType&#160;</td><td class="memItemRight" valign="bottom"><b>packet_id</b> = PacketType::Participant_TCAck</td></tr>
+static const <a class="el" href="tpc_8h.html#ab0e9daa04e747ef00d99197d477a9252">PacketType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>packet_id</b> = PacketType::Participant_TCAck</td></tr>
 <tr class="separator:aae78ffd6bf12453aec36dfc1176b3649"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A packet sent by a participant to <a class="el" href="structtpc_1_1_transaction.html" title="Transaction is used to track a client commit request from start to finish. Tracks the number of succe...">Transaction</a> Coordinator in the event of a rollback in the commit stage In the event that the commit stage succeeded we will instead send a <a class="el" href="structtpc_1_1_participant___t_c_commit_packet.html" title="A packet sent by a participant to Transaction Coordinator with the result of its commit phase Contain...">Participant_TCCommitPacket</a> with a value of 1. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/<a class="el" href="tpc_8h_source.html">tpc.h</a></li>
 </ul>
 </div><!-- contents -->

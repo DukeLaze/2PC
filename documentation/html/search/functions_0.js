@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['onreceive_43',['onReceive',['../structtpc_1_1_participant.html#ae493664d066c9920ec72d97e48b90aff',1,'tpc::Participant']]]
+  ['client_53',['Client',['../structtpc_1_1_client.html#aab1a82dbe45022247aa230674b6a08d7',1,'tpc::Client']]]
 ];

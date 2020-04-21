@@ -16,29 +16,29 @@ Class for the participant part of the 2PC proccess.
 \begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{structtpc_1_1_participant}{Participant}} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{structtpc_1_1_participant_ae493664d066c9920ec72d97e48b90aff}{on\+Receive}} (const char $\ast$data, int dat\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
 \begin{DoxyCompactList}\small\item\em A function for what to do when receiving data. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structtpc_1_1_participant_ad5cf411433d67f5a77604dba772a4e7a}\label{structtpc_1_1_participant_ad5cf411433d67f5a77604dba772a4e7a}} 
-void {\bfseries on\+Rollback} ()
-\item 
-\mbox{\Hypertarget{structtpc_1_1_participant_a9d6bcd99d7cbb873d870497edcb0fe28}\label{structtpc_1_1_participant_a9d6bcd99d7cbb873d870497edcb0fe28}} 
-bool {\bfseries on\+Vote} (\mbox{\hyperlink{structtpc_1_1_t_c___participant_vote_packet}{T\+C\+\_\+\+Participant\+Vote\+Packet}} packet)
-\item 
-\mbox{\Hypertarget{structtpc_1_1_participant_a46edb462daf97883e18f544d3ac17bfe}\label{structtpc_1_1_participant_a46edb462daf97883e18f544d3ac17bfe}} 
-bool {\bfseries on\+Commit} (\mbox{\hyperlink{structtpc_1_1_t_c___participant_commit_packet}{T\+C\+\_\+\+Participant\+Commit\+Packet}} packet)
-\item 
-\mbox{\Hypertarget{structtpc_1_1_participant_aac63cd55b840ff948992de4962fc887d}\label{structtpc_1_1_participant_aac63cd55b840ff948992de4962fc887d}} 
-void {\bfseries send} (const char $\ast$data, int data\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
-\end{DoxyCompactItemize}
+\mbox{\Hypertarget{structtpc_1_1_participant_ae8102a698a24981571dbc59e853d555b}\label{structtpc_1_1_participant_ae8102a698a24981571dbc59e853d555b}} 
+void \mbox{\hyperlink{structtpc_1_1_participant_ae8102a698a24981571dbc59e853d555b}{on\+Rollback}} (int transaction\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Function for rolling back to previous state Replaces the contents of the log file with the contents of the revertlog file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structtpc_1_1_participant_a9d6bcd99d7cbb873d870497edcb0fe28}{on\+Vote}} (\mbox{\hyperlink{structtpc_1_1_t_c___participant_vote_packet}{T\+C\+\_\+\+Participant\+Vote\+Packet}} packet)
+\begin{DoxyCompactList}\small\item\em Function for deciding whether to vote yes or no. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structtpc_1_1_participant_a46edb462daf97883e18f544d3ac17bfe}{on\+Commit}} (\mbox{\hyperlink{structtpc_1_1_t_c___participant_commit_packet}{T\+C\+\_\+\+Participant\+Commit\+Packet}} packet)
+\begin{DoxyCompactList}\small\item\em Function that returns a bool of whether the \mbox{\hyperlink{structtpc_1_1_participant_a5f8df601e4770943062b3f605095323e}{commit\+Callback()}} succeeded. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structtpc_1_1_participant_a1928ef1cd1e9c1441d9200b57209d7f1}{send\+To}} (const char $\ast$data, int data\+\_\+len, \mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}} con)
+\begin{DoxyCompactList}\small\item\em Function for sending data through a given connection. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structtpc_1_1_participant_ac01a98bea3c58737b61bba402db5db04}\label{structtpc_1_1_participant_ac01a98bea3c58737b61bba402db5db04}} 
-\mbox{\hyperlink{structherosockets_1_1_t_c_p_client}{herosockets\+::\+T\+C\+P\+Client}} {\bfseries socket}
+\mbox{\hyperlink{structherosockets_1_1_t_c_p_client}{herosockets\+::\+T\+C\+P\+Client}} \mbox{\hyperlink{structtpc_1_1_participant_ac01a98bea3c58737b61bba402db5db04}{socket}}
 \item 
-\mbox{\Hypertarget{structtpc_1_1_participant_ab087004fa393811038421f8815986ebd}\label{structtpc_1_1_participant_ab087004fa393811038421f8815986ebd}} 
-bool($\ast$ {\bfseries vote\+Callback} )(int id, std\+::string payload)
+\mbox{\Hypertarget{structtpc_1_1_participant_a84bfe4a7d35fcbfdb2e9d29a35a3eba7}\label{structtpc_1_1_participant_a84bfe4a7d35fcbfdb2e9d29a35a3eba7}} 
+std\+::string {\bfseries buffer}
 \item 
-\mbox{\Hypertarget{structtpc_1_1_participant_a5f8df601e4770943062b3f605095323e}\label{structtpc_1_1_participant_a5f8df601e4770943062b3f605095323e}} 
-bool($\ast$ {\bfseries commit\+Callback} )(int id)
+bool($\ast$ \mbox{\hyperlink{structtpc_1_1_participant_ab087004fa393811038421f8815986ebd}{vote\+Callback}} )(int id, std\+::string payload)
+\item 
+bool($\ast$ \mbox{\hyperlink{structtpc_1_1_participant_a5f8df601e4770943062b3f605095323e}{commit\+Callback}} )(int id)
+\item 
+\mbox{\Hypertarget{structtpc_1_1_participant_af045800e9154dca004b990d14dd177af}\label{structtpc_1_1_participant_af045800e9154dca004b990d14dd177af}} 
+std\+::mutex {\bfseries log\+\_\+mutex}
 \end{DoxyCompactItemize}
 
 
@@ -60,14 +60,29 @@ Constructor for the \mbox{\hyperlink{structtpc_1_1_participant}{Participant}} cl
 
 
 \begin{DoxyParams}{Parameters}
-{\em ip} & The ip of the socket \\
+{\em ip} & The ip of the socket. \\
 \hline
-{\em port} & the port of the socket Creates a socket with given ip and port and initializes the logs for the system. \\
+{\em port} & the port of the socket. Creates a socket with given ip and port and initializes the logs for the system. \\
 \hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structtpc_1_1_participant_a46edb462daf97883e18f544d3ac17bfe}\label{structtpc_1_1_participant_a46edb462daf97883e18f544d3ac17bfe}} 
+\index{tpc::Participant@{tpc::Participant}!onCommit@{onCommit}}
+\index{onCommit@{onCommit}!tpc::Participant@{tpc::Participant}}
+\doxysubsubsection{\texorpdfstring{onCommit()}{onCommit()}}
+{\footnotesize\ttfamily bool tpc\+::\+Participant\+::on\+Commit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtpc_1_1_t_c___participant_commit_packet}{T\+C\+\_\+\+Participant\+Commit\+Packet}}}]{packet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function that returns a bool of whether the \mbox{\hyperlink{structtpc_1_1_participant_a5f8df601e4770943062b3f605095323e}{commit\+Callback()}} succeeded. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & Packet with what to commit. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{structtpc_1_1_participant_ae493664d066c9920ec72d97e48b90aff}\label{structtpc_1_1_participant_ae493664d066c9920ec72d97e48b90aff}} 
 \index{tpc::Participant@{tpc::Participant}!onReceive@{onReceive}}
 \index{onReceive@{onReceive}!tpc::Participant@{tpc::Participant}}
@@ -80,13 +95,70 @@ A function for what to do when receiving data.
 
 
 \begin{DoxyParams}{Parameters}
-{\em data} & Data that was sent \\
+{\em data} & Data that was sent. \\
 \hline
-{\em con} & The connection over which the data was sent \textbackslash{} \\
+{\em con} & The connection over which the data was sent. \\
+\hline
+{\em dat\+\_\+len} & Length of the data that was sent.\\
+\hline
+\end{DoxyParams}
+This function provides different functionality depending on the type of package that was sent. It also checks each packet for valid format and info to ensure we only execute on messages from valid clients. \mbox{\Hypertarget{structtpc_1_1_participant_a9d6bcd99d7cbb873d870497edcb0fe28}\label{structtpc_1_1_participant_a9d6bcd99d7cbb873d870497edcb0fe28}} 
+\index{tpc::Participant@{tpc::Participant}!onVote@{onVote}}
+\index{onVote@{onVote}!tpc::Participant@{tpc::Participant}}
+\doxysubsubsection{\texorpdfstring{onVote()}{onVote()}}
+{\footnotesize\ttfamily bool tpc\+::\+Participant\+::on\+Vote (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtpc_1_1_t_c___participant_vote_packet}{T\+C\+\_\+\+Participant\+Vote\+Packet}}}]{packet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function for deciding whether to vote yes or no. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The packet of data which \mbox{\hyperlink{structtpc_1_1_t_c}{TC}} wants us to commit.\\
+\hline
+\end{DoxyParams}
+Updates the log with the contents of the packet, checks whether the logs are good and checks the result of \mbox{\hyperlink{structtpc_1_1_participant_ab087004fa393811038421f8815986ebd}{vote\+Callback()}} before deciding on whether to vote yes. \mbox{\Hypertarget{structtpc_1_1_participant_a1928ef1cd1e9c1441d9200b57209d7f1}\label{structtpc_1_1_participant_a1928ef1cd1e9c1441d9200b57209d7f1}} 
+\index{tpc::Participant@{tpc::Participant}!sendTo@{sendTo}}
+\index{sendTo@{sendTo}!tpc::Participant@{tpc::Participant}}
+\doxysubsubsection{\texorpdfstring{sendTo()}{sendTo()}}
+{\footnotesize\ttfamily void tpc\+::\+Participant\+::send\+To (\begin{DoxyParamCaption}\item[{const char $\ast$}]{data,  }\item[{int}]{data\+\_\+len,  }\item[{\mbox{\hyperlink{classherosockets_1_1_connection}{herosockets\+::\+Connection}}}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function for sending data through a given connection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Data to be sent. \\
+\hline
+{\em data\+\_\+len} & Length of data. \\
+\hline
+{\em con} & Connection through which data should be sent. \\
 \hline
 \end{DoxyParams}
 
 
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structtpc_1_1_participant_a5f8df601e4770943062b3f605095323e}\label{structtpc_1_1_participant_a5f8df601e4770943062b3f605095323e}} 
+\index{tpc::Participant@{tpc::Participant}!commitCallback@{commitCallback}}
+\index{commitCallback@{commitCallback}!tpc::Participant@{tpc::Participant}}
+\doxysubsubsection{\texorpdfstring{commitCallback}{commitCallback}}
+{\footnotesize\ttfamily bool($\ast$ tpc\+::\+Participant\+::commit\+Callback) (int id)}
+
+Provides a way for the consumers of our library to safely commit the data. \mbox{\Hypertarget{structtpc_1_1_participant_ac01a98bea3c58737b61bba402db5db04}\label{structtpc_1_1_participant_ac01a98bea3c58737b61bba402db5db04}} 
+\index{tpc::Participant@{tpc::Participant}!socket@{socket}}
+\index{socket@{socket}!tpc::Participant@{tpc::Participant}}
+\doxysubsubsection{\texorpdfstring{socket}{socket}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structherosockets_1_1_t_c_p_client}{herosockets\+::\+T\+C\+P\+Client}} tpc\+::\+Participant\+::socket}
+
+T\+C\+P\+Client \mbox{\Hypertarget{structtpc_1_1_participant_ab087004fa393811038421f8815986ebd}\label{structtpc_1_1_participant_ab087004fa393811038421f8815986ebd}} 
+\index{tpc::Participant@{tpc::Participant}!voteCallback@{voteCallback}}
+\index{voteCallback@{voteCallback}!tpc::Participant@{tpc::Participant}}
+\doxysubsubsection{\texorpdfstring{voteCallback}{voteCallback}}
+{\footnotesize\ttfamily bool($\ast$ tpc\+::\+Participant\+::vote\+Callback) (int id, std\+::string payload)}
+
+Provides a way for the consumers of our library to prepare for committing the data. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/tpc.\+h\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{tpc_8h}{tpc.\+h}}\end{DoxyCompactItemize}

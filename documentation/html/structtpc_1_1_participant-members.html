@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">2PC
    </div>
-   <div id="projectbrief">A single header library that facilitates Two Phase Commit over TCP/IP</div>
+   <div id="projectbrief">A duo header library that facilitates Two Phase Commit over TCP/IP</div>
   </td>
  </tr>
  </tbody>
@@ -73,15 +73,17 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>commitCallback</b> (defined in <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>onCommit</b>(TC_ParticipantCommitPacket packet) (defined in <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>buffer</b> (defined in <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="structtpc_1_1_participant.html#a5f8df601e4770943062b3f605095323e">commitCallback</a></td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>log_mutex</b> (defined in <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="structtpc_1_1_participant.html#a46edb462daf97883e18f544d3ac17bfe">onCommit</a>(TC_ParticipantCommitPacket packet)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="structtpc_1_1_participant.html#ae493664d066c9920ec72d97e48b90aff">onReceive</a>(const char *data, int dat_len, herosockets::Connection con)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>onRollback</b>() (defined in <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>onVote</b>(TC_ParticipantVotePacket packet) (defined in <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="structtpc_1_1_participant.html#ae8102a698a24981571dbc59e853d555b">onRollback</a>(int transaction_id)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structtpc_1_1_participant.html#a9d6bcd99d7cbb873d870497edcb0fe28">onVote</a>(TC_ParticipantVotePacket packet)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="structtpc_1_1_participant.html#a9dfc02afe1872c69d35ed9e0a2edddad">Participant</a>(std::string ip, short port)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>send</b>(const char *data, int data_len, herosockets::Connection con) (defined in <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>socket</b> (defined in <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>voteCallback</b> (defined in <a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a>)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structtpc_1_1_participant.html#a1928ef1cd1e9c1441d9200b57209d7f1">sendTo</a>(const char *data, int data_len, herosockets::Connection con)</td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="structtpc_1_1_participant.html#ac01a98bea3c58737b61bba402db5db04">socket</a></td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structtpc_1_1_participant.html#ab087004fa393811038421f8815986ebd">voteCallback</a></td><td class="entry"><a class="el" href="structtpc_1_1_participant.html">tpc::Participant</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

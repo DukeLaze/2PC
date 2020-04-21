@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">2PC
    </div>
-   <div id="projectbrief">A single header library that facilitates Two Phase Commit over TCP/IP</div>
+   <div id="projectbrief">A duo header library that facilitates Two Phase Commit over TCP/IP</div>
   </td>
  </tr>
  </tbody>
@@ -74,11 +74,16 @@ $(function() {
 <div class="title">tpc::Client Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="structtpc_1_1_client.html" title="Client represents a network connection and acts as a wrapper for herosockets::Connection....">Client</a> represents a network connection and acts as a wrapper for <a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a>. con contains a SOCKET file descriptor and sockaddr_in connection info. buffer accumulates the data streamed by TCP. type is used to identify what kind of client we are.  
+ <a href="structtpc_1_1_client.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="tpc_8h_source.html">tpc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aab1a82dbe45022247aa230674b6a08d7"><td class="memItemLeft" align="right" valign="top"><a id="aab1a82dbe45022247aa230674b6a08d7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Client</b> (<a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con)</td></tr>
+<tr class="memitem:aab1a82dbe45022247aa230674b6a08d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtpc_1_1_client.html#aab1a82dbe45022247aa230674b6a08d7">Client</a> (<a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a> con)</td></tr>
+<tr class="memdesc:aab1a82dbe45022247aa230674b6a08d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="structtpc_1_1_client.html" title="Client represents a network connection and acts as a wrapper for herosockets::Connection....">Client</a>.  <a href="structtpc_1_1_client.html#aab1a82dbe45022247aa230674b6a08d7">More...</a><br /></td></tr>
 <tr class="separator:aab1a82dbe45022247aa230674b6a08d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -90,12 +95,46 @@ Public Attributes</h2></td></tr>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>buffer</b> = &quot;&quot;</td></tr>
 <tr class="separator:a291adaf2efea7af4dd5c20c93f1a23eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd11a0f0f52157c010a1ae0da6319bd1"><td class="memItemLeft" align="right" valign="top"><a id="afd11a0f0f52157c010a1ae0da6319bd1"></a>
-ClientType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = ClientType::UNKNOWN</td></tr>
+<a class="el" href="tpc_8h.html#aa63ccb8811b41940f842f897fb4a3003">ClientType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = ClientType::UNKNOWN</td></tr>
 <tr class="separator:afd11a0f0f52157c010a1ae0da6319bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3352adf400ed43d389a98911449d4b7e"><td class="memItemLeft" align="right" valign="top"><a id="a3352adf400ed43d389a98911449d4b7e"></a>
-ClientState&#160;</td><td class="memItemRight" valign="bottom"><b>state</b> = ClientState::READY</td></tr>
-<tr class="separator:a3352adf400ed43d389a98911449d4b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="structtpc_1_1_client.html" title="Client represents a network connection and acts as a wrapper for herosockets::Connection....">Client</a> represents a network connection and acts as a wrapper for <a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a>. con contains a SOCKET file descriptor and sockaddr_in connection info. buffer accumulates the data streamed by TCP. type is used to identify what kind of client we are. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aab1a82dbe45022247aa230674b6a08d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab1a82dbe45022247aa230674b6a08d7">&#9670;&nbsp;</a></span>Client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tpc::Client::Client </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a>&#160;</td>
+          <td class="paramname"><em>con</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor for <a class="el" href="structtpc_1_1_client.html" title="Client represents a network connection and acts as a wrapper for herosockets::Connection....">Client</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="classherosockets_1_1_connection.html">herosockets::Connection</a></td><td>con is used to set the member con. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/<a class="el" href="tpc_8h_source.html">tpc.h</a></li>
 </ul>
