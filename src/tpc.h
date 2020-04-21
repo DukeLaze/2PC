@@ -4,7 +4,6 @@
 #include "herosockets.h"
 #include <vector>
 #include <atomic>
-#include <fstream>
 #include <algorithm>
 #include <sstream>
 #include <stdio.h>
@@ -47,10 +46,10 @@ namespace tpc
 
 #if VERBOSITY == 2
 std::mutex stdo_mutex;
-#define TEST_LOG(x)        \
-    tpc::stdo_mutex.lock();     \
-    std::cout              \
-        << x << std::endl; \
+#define TEST_LOG(x)         \
+    tpc::stdo_mutex.lock(); \
+    std::cout               \
+        << x << std::endl;  \
     tpc::stdo_mutex.unlock();
 #else
 #define TEST_LOG(x)
@@ -497,13 +496,14 @@ struct Transaction
 */
 struct TC
 {
-    private: 
+private:
     std::mutex connections_mutex;
     std::vector<Client> connections;
     std::mutex transactions_mutex;
     std::vector<Transaction> transactions;
     std::atomic<bool> quit;
-    public:
+
+public:
     herosockets::TCPServer listening_socket;
     TC(std::string ip, short port)
     {
@@ -518,9 +518,11 @@ struct TC
         herosockets::Callback c = herosockets::Callback::create_on_receive<TC, &TC::onReceive>(this);
         c.on_connect_func = &c.bind_on_connect<TC, &TC::onConnect>;
         c.on_disconnect_func = &c.bind_on_disconnect<TC, &TC::onDisconnect>;
+        auto c2 = herosockets::Callback::create_on_connect<TC, &TC::onConnect>(this);
+        auto c3 = herosockets::Callback::create_on_disconnect<TC, &TC::onDisconnect>(this);
         listening_socket.onReceive = c;
-        listening_socket.onConnect = c;
-        listening_socket.onDisconnect = c;
+        listening_socket.onConnect = c2;
+        listening_socket.onDisconnect = c3;
         TEST_LOG("Transaction Coordinator started.");
     }
     void onReceive(const char *data, int data_len, herosockets::Connection con)
@@ -553,7 +555,7 @@ struct TC
         \param data Data to parse.
         \param con Connection over which data was sent.
     */
-   private: 
+private:
     void parseReceivedData(std::string data, herosockets::Connection &con)
     {
         /*
@@ -606,7 +608,7 @@ struct TC
             TC_ParticipantVotePacket vote;
             vote.payload = p.payload;
             vote.transaction_id = t.id;
-            
+
             TEST_LOG("Started new transaction with id: " << t.id);
             auto [data, len] = vote.toBuffer();
             for (auto &c : t.participants)
@@ -631,7 +633,7 @@ struct TC
         case PacketType::Participant_TCCommit:
         {
             Participant_TCCommitPacket p = Participant_TCCommitPacket::fromBuffer(stripped_data, stripped_data.size());
-            Transaction& t = findTransaction(p.transaction_id);
+            Transaction &t = findTransaction(p.transaction_id);
             if (strcmp(p.response.c_str(), "1") != 0)
             {
                 DEBUG_LOG("a commit failed");
@@ -667,7 +669,7 @@ struct TC
         case PacketType::Participant_TCVote:
         {
             Participant_TCVotePacket p = Participant_TCVotePacket::fromBuffer(stripped_data, stripped_data.size());
-            Transaction& t = findTransaction(p.transaction_id);
+            Transaction &t = findTransaction(p.transaction_id);
             if (strcmp(p.response.c_str(), "1") != 0)
             {
                 DEBUG_LOG("someone voted no...");
@@ -706,7 +708,7 @@ struct TC
         case PacketType::Participant_TCAck:
         {
             Participant_TCAckPacket packet = Participant_TCAckPacket::fromBuffer(stripped_data, stripped_data.size());
-            Transaction& t = findTransaction(packet.transaction_id);
+            Transaction &t = findTransaction(packet.transaction_id);
             t.ackCounter++;
             DEBUG_LOG("commitCounter: " << t.commitCounter);
             DEBUG_LOG("t.participants.size(): " << t.participants.size());
@@ -785,7 +787,8 @@ struct TC
         auto disconnected = std::find_if(connections.begin(), connections.end(), [&](const Client &e) {
             return e.con.client_socket == con.client_socket;
         });
-        removeClient(findClient(con));
+        auto b = findClient(con);
+        removeClient(b);
         connections_mutex.unlock();
     }
     /*!
@@ -802,7 +805,7 @@ struct TC
         \brief Returns the transaction object which corresponds to the transaction id.
         \param transaction_id id of transaction you want returned.
     */
-    Transaction& findTransaction(int transaction_id)
+    Transaction &findTransaction(int transaction_id)
     {
         transactions_mutex.lock();
         auto transaction = std::find_if(transactions.begin(), transactions.end(), [&](const Transaction &t) {
@@ -817,7 +820,7 @@ struct TC
     */
     Client &findClient(herosockets::Connection con)
     {
-        connections_mutex.lock();
+        connections_mutex.try_lock();
         auto client = std::find_if(connections.begin(), connections.end(), [&](const Client &e) {
             return e.con.client_socket == con.client_socket;
         });
@@ -825,8 +828,6 @@ struct TC
         if (a >= connections.size())
         {
             connections.push_back(Client(con));
-            connections_mutex.unlock();
-            return connections.at(a);
         }
         auto &res = connections.at(a);
         connections_mutex.unlock();
@@ -851,14 +852,20 @@ struct TC
         \brief Function to remove a client.
         \param client Client obj to remove.
     */
-    void removeClient(Client client)
+    void removeClient(Client &client)
     {
-        connections_mutex.lock();
-        auto client_it = std::find_if(connections.begin(), connections.end(), [&](const Client &e) {
-            return e.con.client_socket == client.con.client_socket;
-        });
-        listening_socket.closeSocket(client_it->con.client_socket);
-        connections.erase(client_it);
+        connections_mutex.try_lock();
+        auto to_erase = connections.begin();
+        while (to_erase != connections.end())
+        {
+            if (to_erase->con.client_socket == client.con.client_socket)
+                break;
+            ++to_erase;
+        }
+        if (to_erase != connections.end())
+        {
+            connections.erase(to_erase);
+        }
         connections_mutex.unlock();
     }
 };
@@ -887,7 +894,7 @@ struct Participant
         Provides a way for the consumers of our library to safely commit the data.
     */
     bool (*commitCallback)(int id);
-    
+
     std::mutex log_mutex;
 
     /*!
@@ -902,43 +909,6 @@ struct Participant
         socket = herosockets::TCPClient(AF_INET, ip.c_str(), port);
         herosockets::Callback c = herosockets::Callback::create_on_receive<Participant, &Participant::onReceive>(this);
         socket.onReceive = c;
-        //Initialize logs
-
-        if (mkdir("./logs") == -1)
-        {
-            if (errno == EEXIST)
-            {
-                TEST_LOG("Directory 'logs' already exists");
-            }
-            else
-            {
-                TEST_LOG("Cannot create directory folder. It does not already exist." << strerror(errno));
-            }
-        }
-        log_mutex.lock();
-        std::ofstream log;
-        log.open("./logs/log.txt", std::ios_base::app | std::ios_base::out);
-        DEBUG_LOG("open " << log.is_open() << " good " << log.good());
-        if (log.is_open() && log.good())
-        {
-        }
-        else
-        {
-            DEBUG_LOG("Something went wrong when opening log.txt\n");
-        }
-        log.close();
-
-        std::ofstream revert_log;
-        revert_log.open("./logs/revertlog.txt", std::ios_base::app | std::ios_base::out);
-        if (revert_log.is_open() && revert_log.good())
-        {
-        }
-        else
-        {
-            DEBUG_LOG("Something went wrong when opening revertlog.txt\n");
-        }
-        revert_log.close();
-        log_mutex.unlock();
         socket.start();
     }
 
@@ -975,8 +945,10 @@ struct Participant
             parseReceivedData(one_packet, con);
         }
     }
-    private:
-    void parseReceivedData(std::string data, herosockets::Connection &con){
+
+private:
+    void parseReceivedData(std::string data, herosockets::Connection &con)
+    {
         std::istringstream ss(data);
         std::vector<std::string> fields;
         std::string line;
@@ -1020,26 +992,6 @@ struct Participant
                 if (onCommit(packet))
                 {
                     response.response = "1";
-
-                    log_mutex.lock();
-                    std::string readln;
-                    std::ifstream log("./logs/log.txt");
-                    std::ofstream revertlog("./logs/revertlog.txt");
-                    if (revertlog.is_open() && log.is_open())
-                    {
-                        while (getline(log, readln))
-                        {
-                            revertlog << readln << std::endl;
-                        }
-                        log.close();
-                    }
-                    else
-                    {
-                        TEST_LOG("Could not read backup file. Something was either wrong with the file-reading or there was no backup log.");
-                    }
-                    revertlog.close();
-                    log_mutex.unlock();
-                    TEST_LOG("Data committed")
                 }
                 else
                 {
@@ -1081,7 +1033,7 @@ struct Participant
             auto [data, len] = response.toBuffer();
             sendTo(data.c_str(), len, socket.connection);
             TEST_LOG("Vote is sent to TC: " << response.response);
-            
+
             break;
         }
         case PacketType::Client_TCRequest:
@@ -1097,7 +1049,8 @@ struct Participant
         }
         }
     }
-    public:
+
+public:
     /*!
         \brief Function for rolling back to previous state
         Replaces the contents of the log file with the contents of the revertlog file. 
@@ -1106,62 +1059,6 @@ struct Participant
     {
         static int times_called = 0;
         times_called++;
-        //DEBUG_LOG("FINDME!: " << times_called);
-        TEST_LOG("Reverting current log to revertlog");
-        log_mutex.lock();
-        std::ifstream log;
-
-        log.open("./logs/log.txt");
-        std::string line;
-        /*
-        log << "Transaction with id " << packet.transaction_id << std::endl;
-        log << packet.payload << std::endl;
-        log << "---END OF TRANSACTION---\n";
-        */
-        if (log.is_open())
-        {
-            int indexOfTransactionToBeReverted = -1;
-            std::string fileContent = "";
-            while (std::getline(log, line))
-            {
-                fileContent += line + "\n";
-            }
-            size_t found = fileContent.find("Transaction with id " + transaction_id);
-            if (found != std::string::npos)
-            {
-                indexOfTransactionToBeReverted = found;
-                DEBUG_LOG("Found new index " << indexOfTransactionToBeReverted);
-            }
-            std::string endString = "---END OF TRANSACTION---\n";
-            int endOfTransactionToBeReverted = fileContent.find(endString, indexOfTransactionToBeReverted) + endString.size();
-
-
-            /*             DEBUG_LOG("oldFileContent: " << fileContent); */
-            //DEBUG_LOG("substr from 0 to " << indexOfTransactionToBeReverted << " gives: " << fileContent.substr(0, indexOfTransactionToBeReverted));
-            std::string newFileContent = fileContent.substr(0, indexOfTransactionToBeReverted) +""+ fileContent.substr(endOfTransactionToBeReverted, ((fileContent.size()-1) - (endOfTransactionToBeReverted)));
-            
-            /* std::string first = fileContent.substr(0, indexOfTransactionToBeReverted - 2);
-            std::string second = fileContent.substr(endOfTransactionToBeReverted, (fileContent.length() - 1) - (endOfTransactionToBeReverted - 1));
-            std::string combinedmagic = first + second; */
-
-
-            /*             DEBUG_LOG("index ofTransactionToBeReverted: " << indexOfTransactionToBeReverted);
-            DEBUG_LOG("endOfTransactionToBeReverted: " << endOfTransactionToBeReverted);
-            DEBUG_LOG("newFileContent: " << newFileContent);
-            DEBUG_LOG("combined " << combinedmagic);
-            DEBUG_LOG("FIRST PART: " << fileContent.substr(0, indexOfTransactionToBeReverted-2));
-            DEBUG_LOG("SEC PART: " << fileContent.substr(endOfTransactionToBeReverted, (fileContent.length()-1)-(endOfTransactionToBeReverted-1))); */
-            log.close();
-            std::ofstream overwrite_log;
-            overwrite_log.open("./logs/log.txt");
-            overwrite_log << newFileContent;
-            overwrite_log.close();
-        }
-        else
-        {
-            TEST_LOG("Could not read backup file. Something was either wrong with the file-reading or there was no backup log.");
-        }
-        log_mutex.unlock();
     }
 
     /*!
@@ -1172,31 +1069,15 @@ struct Participant
     */
     bool onVote(TC_ParticipantVotePacket packet)
     {
-        log_mutex.lock();
-        std::fstream log("./logs/log.txt", std::ios_base::in | std::ios_base::out | std::ios_base::app | std::ios_base::ate);
-        if (log.is_open())
-        {
-            log << "Transaction with id " << packet.transaction_id << std::endl;
-            log << packet.payload << std::endl;
-            log << "---END OF TRANSACTION---\n";
-        }
-        std::ifstream revlog("./logs/revertlog.txt");
-        DEBUG_LOG("log good open, revlog, callback: " << log.good() << log.is_open() << revlog.good() << voteCallback(packet.transaction_id, packet.payload));
-        if (log.good() && revlog.good() && voteCallback(packet.transaction_id, packet.payload))
+        DEBUG_LOG("Result of voteCallback: " << voteCallback(packet.transaction_id, packet.payload));
+        if (voteCallback(packet.transaction_id, packet.payload))
         {
             DEBUG_LOG("I vote to commit");
-            log.close();
-            revlog.close();
-            log_mutex.unlock();
             return true;
         }
         else
         {
             DEBUG_LOG("I vote to abort");
-            log.close();
-            revlog.close();
-            log_mutex.unlock();
-            
             return false;
         }
     }
@@ -1281,6 +1162,7 @@ struct Requester
         {
         case PacketType::TC_ClientRequestAck:
         {
+            //TODO: Call client callback with the success/aborted status
             TC_ClientRequestAckPacket packet = TC_ClientRequestAckPacket::fromBuffer(stripped_data, stripped_data.size());
             TEST_LOG("TC has assured us it is working on transaction " << packet.transaction_id);
             break;
