@@ -45,6 +45,9 @@ bool create_table(std::string name)
 
 bool create_row(std::vector<std::string> &data)
 {
+    if(data.size() < 4){
+        return false;
+    }
     std::string filename = "./db/"+data[2]+"/"+data[3]+".dbfil";
     DEBUG_LOG(filename);
     std::fstream row;
@@ -105,11 +108,11 @@ bool onCommit_callback(int id)
         std::string line;
         while (std::getline(ss, line, ' '))
         {
+            fields.push_back(line);
             if (ss.eof())
             {
                 break;
             }
-            fields.push_back(line);
         }
         if(std::stoi(fields[0]) == id){
             TEST_LOG("Found transaction at index: " << i);
